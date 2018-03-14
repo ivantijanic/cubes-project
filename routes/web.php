@@ -23,6 +23,12 @@ Route::post('/contact-us', 'ContactController@process');
 
 Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-page');
 
+//Blog routes
+Route::get('/blog', 'BlogController@blogGrid')->name('blog');
+Route::get('/blog/{id}/{slug?}', 'BlogController@singleBlog')->name('single-blog');
+
+
+
 Auth::routes();
 
 // CMS Admin routes
