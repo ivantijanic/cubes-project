@@ -15,6 +15,9 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CYanone+Kaffeesatz:200,300,400,700" rel="stylesheet">
         <link rel="shortcut icon" href="{{url('/skins/front/assets/images/fav-icon.png')}}">
     </head>
+    
+    
+    
     <body class="page-template-template-homepage-v1 home-v1">
         <div id="page" class="hfeed site">
             <header id="masthead" class="site-header header-v1"  style="background-image: none; ">
@@ -29,6 +32,10 @@
                                 </svg>
                             </a>
                         </div>
+                        
+                        
+                        
+                        
                         <nav id="site-navigation" class="main-navigation"  aria-label="Primary Navigation">
 <!--                            <div class="c-brand c-pull-left">
                             
@@ -143,7 +150,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item"><a href="blog.html">News</a></li>
+                                    <li class="menu-item"><a href="{{url('blog')}}">News</a></li>
                                     <li class="menu-item"><a href="contact.html">Contact</a></li>
                                     <li class="c-search-toggler-wrapper">
                                     <a href="#" class="c-btn-icon c-search-toggler">
@@ -220,6 +227,9 @@
                                 <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-drinks"></i>Drinks</a></li>
                             </ul>
                         </nav>
+                        
+                        
+                        
                         <!-- #secondary-navigation -->
                     </div>
                 </div>

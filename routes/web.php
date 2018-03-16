@@ -11,20 +11,21 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/index', 'HomeController@index')->name('index');
 
-Route::get('/products', 'ProductsController@allProducts')->name('products.all');
-Route::get('/products/category/{id}', 'ProductsController@category')->name('products.category');
-Route::get('/products/product/{id}', 'ProductsController@oneProduct')->name('products.product');
-Route::get('/products/on-sale', 'ProductsController@onSale')->name('products.on-sale');
-
-Route::get('/contact-us', 'ContactController@show')->name('contact-us');
-Route::post('/contact-us', 'ContactController@process');
-
-Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-page');
+//Route::get('/products', 'ProductsController@allProducts')->name('products.all');
+//Route::get('/products/category/{id}', 'ProductsController@category')->name('products.category');
+//Route::get('/products/product/{id}', 'ProductsController@oneProduct')->name('products.product');
+//Route::get('/products/on-sale', 'ProductsController@onSale')->name('products.on-sale');
+//
+//Route::get('/contact-us', 'ContactController@show')->name('contact-us');
+//Route::post('/contact-us', 'ContactController@process');
+//
+//Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-page');
 
 //Blog routes
-Route::get('/blog', 'BlogController@blogGrid')->name('blog');
+Route::get('/blog', 'BlogController@blog')->name('blog');
 Route::get('/blog/{id}/{slug?}', 'BlogController@singleBlog')->name('single-blog');
 
 

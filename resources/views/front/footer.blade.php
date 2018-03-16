@@ -85,17 +85,5 @@
                 </div>
                 <!-- .col-full -->
             </footer>
-            <!-- #colophon -->
-        </div>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/jquery.min.js')}}"></script>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/tether.min.js')}}"></script>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/bootstrap.min.js')}}"></script>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/owl.carousel.min.js')}}"></script>
-
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/social.share.min.js')}}"></script>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-        <script type="text/javascript" src="{{url('/skins/front/assets/js/scripts.min.js')}}"></script>
-
-    </body>
-</html>
+        
 

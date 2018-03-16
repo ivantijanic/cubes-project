@@ -1,4 +1,8 @@
-@include('front.header')
+@extends('front.layout')
+
+@section('class_for_gread', 'page-template-template-homepage-v1 home-v1')
+
+@section('content')
             <div id="content" class="site-content" tabindex="-1" >
                 <div class="col-full">
                     <div id="primary" class="content-area">
@@ -770,4 +774,4 @@
                 <!-- .col-full -->
             </div>
 
-@include('front.footer')
+@endsection
