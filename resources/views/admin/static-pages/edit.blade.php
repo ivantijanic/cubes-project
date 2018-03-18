@@ -141,11 +141,13 @@ $('#row-form [name="body"]').ckeditor({
 	'allowedContent': true,
 	//'forcePasteAsPlainText': true, // disable paste from word
 	'contentsCss': [
-		"{{url('/skins/front/plugins/bootstrap/dist/css/bootstrap.min.css')}}",
-		"{{url('/skins/front/plugins/font-awesome/css/font-awesome.min.css')}}",
-		"{{url('/skins/front/css/theme-style.css')}}",
-		"{{url('/skins/front/css/custom-style.css')}}",
-		"{{url('/skins/front/css/colour-blue.css')}}"
+		"{{url('/skins/front/assets/css/bootstrap.min.css')}}",
+		"{{url('/skins/front/assets/css/font-awesome.min.css')}}",
+		"{{url('/skins/front/assets/css/animate.min.css')}}",
+		"{{url('/skins/front/assets/css/font-pizzaro.css')}}",
+		"{{url('/skins/front/assets/css/style.css')}}",
+                "{{url('/skins/front/assets/css/colors/red.css')}}",
+                "{{url('/skins/front/assets/css/jquery.mCustomScrollbar.min.css')}}"
 	],
 	'toolbarGroups': [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },

@@ -139,6 +139,27 @@ Route::middleware('auth')
 	
 	// ADD ADMIN ROUTES HERE
 	
+         //For Blog Categories
+            Route::get('/categories', 'BlogCategoriesController@index')->name('admin.categories');
+            
+            Route::get('/categories/add', 'BlogCategoriesController@add')->name('admin.categories.add');
+            Route::post('/categories/add', 'BlogCategoriesController@insert');
+            
+            Route::get('/categories/edit/{id}', 'BlogCategoriesController@edit')->name('admin.categories.edit');
+            Route::post('/categories/edit/{id}', 'BlogCategoriesController@upload');
+            
+            Route::post('/categories/delete', 'BlogCategoriesController@delete')->name('admin.categories.delete');
+            
+            //For Blog Posts
+            Route::get('/posts', 'BlogPostsController@index')->name('admin.posts');
+            
+            Route::get('/posts/add', 'BlogPostsController@add')->name('admin.posts.add');
+            Route::post('/posts/add', 'BlogPostsController@insert');
+            
+            Route::get('/posts/edit/{id}', 'BlogPostsController@edit')->name('admin.posts.edit');
+            Route::post('/posts/edit/{id}', 'BlogPostsController@upload');
+            
+            Route::post('/posts/delete', 'BlogPostsController@delete')->name('admin.posts.delete');
 	
 	
 	// END ADMIN ROUTES
