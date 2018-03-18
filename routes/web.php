@@ -11,28 +11,50 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
-Route::get('/index', 'HomeController@index')->name('index');
+Route::get('/', 'HomeController@index');
 
-//Route::get('/products', 'ProductsController@allProducts')->name('products.all');
-//Route::get('/products/category/{id}', 'ProductsController@category')->name('products.category');
-//Route::get('/products/product/{id}', 'ProductsController@oneProduct')->name('products.product');
-//Route::get('/products/on-sale', 'ProductsController@onSale')->name('products.on-sale');
-//
-//Route::get('/contact-us', 'ContactController@show')->name('contact-us');
-//Route::post('/contact-us', 'ContactController@process');
-//
-//Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-page');
 
+Route::get('/contact-us', 'ContactController@show')->name('contact-us');
+Route::post('/contact-us', 'ContactController@process');
+
+Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-page');
+
+// ADD FRONTEND ROUTES HERE
+
+// FRONTEND ROUTES
+// 
 //Blog routes
 Route::get('/blog', 'BlogController@blog')->name('blog');
-Route::get('/blog/{id}/{slug?}', 'BlogController@singleBlog')->name('single-blog');
+Route::get('/blog/{id}/{slug?}', 'BlogController@blogPost')->name('blog-post');
 
-
-
+//FRONTEND AUTH
 Auth::routes();
 
+Route::middleware('auth:frontend')->group(function() {
+	
+	//Routes for loggedin frontend user
+	
+	Route::get('/profile', 'ProfileController@edit')->name('profile');
+});
+
 // CMS Admin routes
+
+Route::prefix('admin')
+	->namespace('Admin')
+	->group(function () {
+		
+	// Authentication Routes...
+	Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+	Route::post('login', 'Auth\LoginController@login');
+	Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
+	
+	// Password Reset Routes...
+	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
+	Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+});
 
 Route::middleware('auth')
 	->prefix('admin')
@@ -60,55 +82,6 @@ Route::middleware('auth')
 	Route::post('/tags/edit/{id}', 'TagsController@update');
 	
 	Route::post('/tags/delete', 'TagsController@delete')->name('admin.tags.delete');
-	
-	
-	
-	//Product Groups routes
-	Route::get('/product-groups', 'ProductGroupsController@index')->name('admin.product-groups.index');
-	
-	Route::get('/product-groups/add', 'ProductGroupsController@add')->name('admin.product-groups.add');
-	Route::post('/product-groups/add', 'ProductGroupsController@insert');
-			
-	Route::get('/product-groups/edit/{id}', 'ProductGroupsController@edit')->name('admin.product-groups.edit');
-	Route::post('/product-groups/edit/{id}', 'ProductGroupsController@update');
-	
-	Route::post('/product-groups/delete', 'ProductGroupsController@delete')->name('admin.product-groups.delete');
-	
-	//Product Categories routes
-	Route::get('/product-categories', 'ProductCategoriesController@index')->name('admin.product-categories.index');
-	
-	Route::get('/product-categories/add', 'ProductCategoriesController@add')->name('admin.product-categories.add');
-	Route::post('/product-categories/add', 'ProductCategoriesController@insert');
-			
-	Route::get('/product-categories/edit/{id}', 'ProductCategoriesController@edit')->name('admin.product-categories.edit');
-	Route::post('/product-categories/edit/{id}', 'ProductCategoriesController@update');
-	
-	Route::post('/product-categories/delete', 'ProductCategoriesController@delete')->name('admin.product-categories.delete');
-
-	
-	//Product Brands routes
-	Route::get('/product-brands', 'ProductBrandsController@index')->name('admin.product-brands.index');
-	
-	Route::get('/product-brands/add', 'ProductBrandsController@add')->name('admin.product-brands.add');
-	Route::post('/product-brands/add', 'ProductBrandsController@insert');
-			
-	Route::get('/product-brands/edit/{id}', 'ProductBrandsController@edit')->name('admin.product-brands.edit');
-	Route::post('/product-brands/edit/{id}', 'ProductBrandsController@update');
-	
-	Route::post('/product-brands/delete', 'ProductBrandsController@delete')->name('admin.product-brands.delete');
-	
-	
-	//Products routes
-	Route::get('/products', 'ProductsController@index')->name('admin.products.index');
-	Route::get('/products/datatable', 'ProductsController@datatable')->name('admin.products.datatable');
-	
-	Route::get('/products/add', 'ProductsController@add')->name('admin.products.add');
-	Route::post('/products/add', 'ProductsController@insert');
-			
-	Route::get('/products/edit/{id}', 'ProductsController@edit')->name('admin.products.edit');
-	Route::post('/products/edit/{id}', 'ProductsController@update');
-	
-	Route::post('/products/delete', 'ProductsController@delete')->name('admin.products.delete');
 	
 	
 	//Users routes
@@ -164,4 +137,9 @@ Route::middleware('auth')
 	Route::post('/static-pages/disable', 'StaticPagesController@disable')->name('admin.static-pages.disable');
 	Route::post('/static-pages/reorder', 'StaticPagesController@reorder')->name('admin.static-pages.reorder');
 	
+	// ADD ADMIN ROUTES HERE
+	
+	
+	
+	// END ADMIN ROUTES
 });

@@ -1,4 +1,8 @@
-@include('front.header')   
+@extends('front.layout')
+
+@section('class_for_gread', 'blog blog-grid right-sidebar')
+
+@section('content')
 
 <div id="content" class="site-content" tabindex="-1" >
             <div class="col-full">
@@ -231,4 +235,4 @@
             <!-- .col-full -->
          </div>
 
-@include('front.footer')
+@endsection

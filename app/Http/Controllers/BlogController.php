@@ -9,4 +9,9 @@ class BlogController extends Controller
     public function blog(){
         return view('front.blog.blog');
     }
+    
+    
+    public function blogPost(){
+        return view('front.blog.blog-post');
+    }
 }

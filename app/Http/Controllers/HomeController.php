@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\IndexSlide;
 
 class HomeController extends Controller
 {
@@ -14,11 +13,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-		//using enabled scope
-		$indexSlides = IndexSlide::enabled()->orderBy('order_number')->get();
-		
-        return view('front.home.index', [
-			'indexSlides' => $indexSlides
-		]);
+        return view('front.home.index');
     }
 }

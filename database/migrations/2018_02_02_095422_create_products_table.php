@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('product_category_id')->default(0);
+                        $table->integer('product_subcategory_id')->nullable();
 			$table->integer('product_brand_id')->default(0);
 			$table->string('title');
 			$table->string('photo_filename')->nullable();
@@ -25,6 +26,8 @@ class CreateProductsTable extends Migration
 			$table->decimal('quantity', 8, 2)->default(0);
 			$table->tinyInteger('on_sale')->default(0);
 			$table->decimal('discount', 8, 2)->default(0);
+                        $table->tinyInteger('first_page')->default(0);//Appears on first page when listed as categories or else
+                        $table->string('product_code')->nullable();
 			
             $table->timestamps();
         });

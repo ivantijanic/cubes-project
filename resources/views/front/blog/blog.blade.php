@@ -17,25 +17,27 @@
                      <div class="posts">
              
                         <!-- #post-## -->
-                        @foreach($posts as $post)
+
                         
-                        <article id="post-356" class="post-356 post type-post status-publish format-audio hentry category-design category-music category-social tag-audio tag-awsome tag-buy-it tag-music  post_format-post-format-audio">
+                       <article id="post-359" class="post-359 post type-post status-publish format-image has-post-thumbnail sticky hentry category-technology tag-event tag-festival tag-music tag-woocommerce post_format-post-format-image">
                            <header class="entry-header">
                               <div class="media-attachment">
-                                 <iframe style="height=:165px; width:100%;" width="870" height="165" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/229791977&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true"></iframe>
+                                 <div class="post-thumbnail">
+                                    <a href="blog-single.html">
+                                    <img width="1619" height="827" src="assets/images/blog/blog-1.jpg" class="attachment-full size-full wp-post-image" alt="" />
+                                    </a>
+                                 </div>
                               </div>
                               <h1 class="alpha entry-title">
-                                 <a href="blog-single.html" rel="bookmark">Music for Dinner &#8211; Audio Player</a>
+                                 <a href="{{url('blog-post')}}" rel="bookmark">Pizza Festival – Reopen</a>
                               </h1>
                               <div class="entry-meta">
                                  <div class="cat-links">
-                                    <a href="blog-single.html" rel="category tag">Design</a>,
-                                    <a href="blog-single.html" rel="category tag">Music</a>,
-                                    <a href="blog-single.html" rel="category tag">Social</a>
+                                    <a href="blog-single.html" rel="category tag">Technology</a>
                                  </div>
                                  <span class="posted-on">
                                  <a href="blog-single.html" rel="bookmark">
-                                 <time class="entry-date published" datetime="2016-10-13T14:47:34+00:00">October 13, 2016</time>
+                                 <time class="entry-date published" datetime="2016-10-13T14:53:25+00:00">October 13, 2016</time>
                                  </a>
                                  </span>
                                  <div class="author">
@@ -48,26 +50,16 @@
                            <div class="entry-content">
                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
                               <div class="post-readmore">
-                                 <a href="{{url('/blog-single')}}" class="read-more-text">Read More</a>
+                                 <a href="blog-single.html" class="read-more-text">Read More</a>
                               </div>
-                              <span class="comments-link"><a href="#">Leave a comment</a></span>
+                              <span class="comments-link">
+                              <a href="#">Leave a comment</a>
+                              </span>
                            </div>
                         </article>
-                        @andforeach
-                  
+
                         
-      
-                        <!-- #post-## -->
-<!--                        <article id="post-343" class="post-343 post type-post status-publish format-quote hentry category-links-quotes category-uncategorized tag-awsome tag-bootstrap tag-clean-design tag-woocommerce tag-wordpress post_format-post-format-quote">
-                            <h1 style="display:none;">test</h1>
-                           <div class="entry-content">
-                              <blockquote>
-                                 <p>Quisque a commodo lectus. Nunc vel dolor sed libero venenatis egestas. Cras non volutpat enim. Cras molestie purus id lorem sodales, in facilisis erat tristique. Aliquam luctus orci aliquet augue eleifend.</p>
-                                 <cite> Steve Kowalsky</cite>
-                              </blockquote>
-                           </div>
-                            .entry-content 
-                        </article>-->
+
              
                    
                      </div>

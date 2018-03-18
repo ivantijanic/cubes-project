@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['news_id', 'visitor_name', 'body'];
+    protected $fillable = ['blog_post_id', 'visitor_name', 'body'];
 	
-	public function myNews() {
+	public function blogPost() {
 		
-		return $this->belongsTo(\App\Models\News::class, 'news_id');
+		return $this->belongsTo(\App\Models\BlogPost::class, 'blog_post_id');
 	}
 }

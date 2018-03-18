@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CubesCMS'),
+    'name' => env('APP_NAME', 'CubesProject'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://cubes-cms.local'),
+    'url' => env('APP_URL', 'http://cubes-project.local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:qSDRGpFMBdx0A5+Fw9UWSq0RcvM0PrLqtiH2AwsVn2o='),
+    'key' => env('APP_KEY', 'base64:ii37Kd+dyNFLcJhv5cRsGsBef7AOdoMqDhleDTCq0Sc='),
 
     'cipher' => 'AES-256-CBC',
 

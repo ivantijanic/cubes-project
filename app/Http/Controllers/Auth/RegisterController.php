@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\FrontendUser;
+
 class RegisterController extends Controller
 {
     /*
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -58,11 +60,11 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\FrontendUser
      */
     protected function create(array $data)
     {
-        return User::create([
+        return FrontendUser::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -70,14 +72,13 @@ class RegisterController extends Controller
     }
 	
 	
-	// Zabrana registracije novih korisnika sa frontend-a
-	
-	public function showRegistrationForm() {
-		
-		return abort(404);
-	}
-	
-	public function register(Request $request) {
-		return abort(404);
-	}
+	/**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return \Auth::guard('frontend');
+    }
 }

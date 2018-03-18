@@ -16,7 +16,9 @@ class CreateIndexSlidesTable extends Migration
         Schema::create('index_slides', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('title');
-			$table->text('description')->nullable();
+			$table->text('description_1')->nullable();
+                        $table->text('description_2')->nullable();
+                        $table->text('description_3')->nullable();
 			$table->string('photo_filename')->nullable();
 			$table->string('url')->nullable();
 			$table->integer('order_number')->default(0);

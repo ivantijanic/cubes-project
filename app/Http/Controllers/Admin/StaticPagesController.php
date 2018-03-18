@@ -141,6 +141,13 @@ class StaticPagesController extends Controller
 			//update new file name in database
 			$staticPage->photo_filename = $newFileName;
 			$staticPage->save();
+			
+			$photoFilePath = public_path('/storage/static-pages/' . $newFileName);
+			$img = \Image::make($photoFilePath);
+			
+			$img->fit(750);//width 750 height auto
+			
+			$img->save();
 		}
 		
 		
