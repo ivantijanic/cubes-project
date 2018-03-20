@@ -21,7 +21,7 @@ class BlogPostsController extends Controller {
     public function add() {
 
         $blogCategories = BlogCategory::orderBy('title')->get();
-$tags = Tag::orderBy('title')->get();
+        $tags = Tag::orderBy('title')->get();
 
         return view('admin.blog-posts.add', [
             'blogCategories' => $blogCategories,
@@ -35,17 +35,20 @@ $tags = Tag::orderBy('title')->get();
 
         $formData = $request->validate([
             'blog_category_id' => 'required|exists:blog_categories,id',
-            'published_at' => 'present',
+            'author' => 'required',
+            'blog_post_photo' => 'image|mimes:jpeg|max:10240', //dimensions:min_width=800px,min_height=400px
             'title' => 'required',
-            'author' => 'present',
-            'description' => 'present',
-            'blog_post_photo' => 'image|mimes:jpeg|max:10240|dimensions:min_width=800px,min_height=400px',
-            'body' => 'present',
+            'tag_ids' => 'required|array|min:2|exists:tags,id',
+            'description' => 'required',
+            'body' => 'required',
+            'published_at' => 'required',
         ]);
+
 
         $post = new BlogPost($formData);
 
         $post->save();
+
 
 //		foreach ($formData['tag_ids'] as $tagId) {
 //			\DB::table('products_tags')->insert([
@@ -58,6 +61,9 @@ $tags = Tag::orderBy('title')->get();
         // sync - detach + attach
         //   $product->tags()->sync($formData['tag_ids']);
 
+        $post->tags()->sync($formData['tag_ids']);
+
+
         if ($request->hasFile('blog_post_photo')) {
             // file has been uploaded
 
@@ -68,27 +74,27 @@ $tags = Tag::orderBy('title')->get();
             //file extension on local computer
             //dd($uploadedFile->getClientOriginalExtension());
 
-            $newFileName = $post->id . '_' . $uploadedFile->getClientOriginalName();
+            $postFileName = $post->id . '_' . $uploadedFile->getClientOriginalName();
 
             //move file to new location with new name
 
             $uploadedFile->move(
-                    public_path('/skins/blog-posts'), $newFileName
+                    public_path('/storage/blog-posts-images'), $postFileName
             );
 
-            $post->image = $newFileName;
+            $post->photo_filename = $postFileName;
             $post->save();
         }
 
         return redirect()->route('admin.posts')
-                        ->with('systemMessage', 'Product has been added!');
+                        ->with('systemMessage', 'Post has been added!');
     }
 
     public function edit($id) {
-        $post = BlogPost::findOrFail($id);
 
+        $post = BlogPost::findOrFail($id);
         $blogCategories = BlogCategory::orderBy('title')->get();
-$tags = Tag::orderBy('title')->get();
+        $tags = Tag::orderBy('title')->get();
 
         return view('admin.blog-posts.edit', [
             'post' => $post,
@@ -97,12 +103,84 @@ $tags = Tag::orderBy('title')->get();
         ]);
     }
 
-    public function upload() {
-        
+    public function update($id) {
+
+        $post = BlogPost::findOrFail($id);
+
+        $request = request();
+
+        $formData = $request->validate([
+            'blog_category_id' => 'required|exists:blog_categories,id',
+            'author' => 'required',
+            'blog_post_photo' => 'image|mimes:jpeg|max:10240', //dimensions:min_width=800px,min_height=400px
+            'title' => 'required',
+            'tag_ids' => 'required|array|min:2|exists:tags,id',
+            'description' => 'required',
+            'body' => 'required',
+            'published_at' => 'required',
+        ]);
+
+        $post->fill($formData);
+
+        $post->save();
+
+        //save chosen tag ids
+        $post->tags()->sync($formData['tag_ids']);
+
+        if ($request->hasFile('blog_post_photo')) {
+
+            // new uploaded file
+            $uploadedFile = $request->file('blog_post_photo');
+
+            $publicStorage = \Storage::disk('public');
+
+            //if old photo file exists delete old file
+            if ($post->photo_filename && $publicStorage->exists('/blog-posts-images/' . $post->photo_filename)) {
+
+                $publicStorage->delete('/blog-posts-images/' . $post->photo_filename);
+            }
+
+            //move new file to new location
+
+            $newFileName = $post->id . '_' . $uploadedFile->getClientOriginalName();
+
+            $uploadedFile->storeAs('/blog-posts-images', $newFileName, 'public');
+
+            //update new file name in database
+            $post->photo_filename = $newFileName;
+            $post->save();
+        }
+
+
+        return redirect()->route('admin.posts')
+                        ->with('systemMessage', 'Post has been saved');
     }
 
     public function delete() {
-        
+        $request = request();
+
+        $post = BlogPost::findOrFail($request->input('id'));
+
+
+        //delete from database
+        $post->delete();
+
+        // delete relations to tags table
+        $post->tags()->detach();
+
+        //see if photo file exists
+        if (
+                $post->photo_filename && \Storage::disk('public')
+                        ->exists('/blog-posts-images/' . $post->photo_filename)
+        ) {
+
+            //delete photo from disk
+            \Storage::disk('public')
+                    ->delete('/blog-posts-images/' . $post->photo_filename);
+        }
+
+        return redirect()->route('admin.posts')
+                        ->with('systemMessage', 'Post has been deleted');
     }
 
 }

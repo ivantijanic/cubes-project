@@ -173,7 +173,7 @@ class TagsController extends Controller
 		
 		//brisanje zapisa iz baze
 		
-		\DB::table('news_tags')->where('tag_id', '=', $tag->id)->delete();
+		\DB::table('blog_posts_tags')->where('tag_id', '=', $tag->id)->delete();
 		
 		$tag->delete();
 		

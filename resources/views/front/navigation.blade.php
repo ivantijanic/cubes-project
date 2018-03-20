@@ -128,7 +128,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item"><a href="{{url('blog')}}">News</a></li>
+                                    <li class="menu-item"><a href="{{url('blog')}}">Blog</a></li>
                                     <li class="menu-item"><a href="contact.html">Contact</a></li>
                                     <li class="c-search-toggler-wrapper">
                                     <a href="#" class="c-btn-icon c-search-toggler">

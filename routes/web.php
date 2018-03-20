@@ -24,8 +24,10 @@ Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-pag
 // FRONTEND ROUTES
 // 
 //Blog routes
-Route::get('/blog', 'BlogController@blog')->name('blog');
-Route::get('/blog/{id}/{slug?}', 'BlogController@blogPost')->name('blog-post');
+Route::get('/blog', 'BlogController@blogPosts')->name('blog');
+Route::get('/blog/{id}', 'BlogController@singleBlogPost')->name('blog-post');
+Route::post('/blog/{id}', 'BlogController@comment');
+
 
 //FRONTEND AUTH
 Auth::routes();
@@ -146,7 +148,7 @@ Route::middleware('auth')
             Route::post('/categories/add', 'BlogCategoriesController@insert');
             
             Route::get('/categories/edit/{id}', 'BlogCategoriesController@edit')->name('admin.categories.edit');
-            Route::post('/categories/edit/{id}', 'BlogCategoriesController@upload');
+            Route::post('/categories/edit/{id}', 'BlogCategoriesController@update');
             
             Route::post('/categories/delete', 'BlogCategoriesController@delete')->name('admin.categories.delete');
             
@@ -157,7 +159,7 @@ Route::middleware('auth')
             Route::post('/posts/add', 'BlogPostsController@insert');
             
             Route::get('/posts/edit/{id}', 'BlogPostsController@edit')->name('admin.posts.edit');
-            Route::post('/posts/edit/{id}', 'BlogPostsController@upload');
+            Route::post('/posts/edit/{id}', 'BlogPostsController@update');
             
             Route::post('/posts/delete', 'BlogPostsController@delete')->name('admin.posts.delete');
 	

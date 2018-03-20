@@ -17,7 +17,7 @@
         <i class="fa fa-table"></i> {{__('front.add')}} {{__('front.page_blog')}} {{__('front.first_post')}}
     </div>
     <div class="card-body">       
-        <form class="row" action="" method="post" enctype="multipart/form-data">
+        <form id="row-form" class="row" action="" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <fieldset class="col-lg-6">
                 <legend>General settings</legend>
@@ -163,22 +163,60 @@
 @endsection
 @push('head_links')
 <link href="{{url('/skins/admin/vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet" type="text/css"/>
+
 @endpush
 
 @push('footer_javascript')
+<script src="{{url('/skins/admin/vendor/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+<script src="{{url('/skins/admin/vendor/ckeditor/adapters/jquery.js')}}" type="text/javascript"></script>
+
 <script src="{{url('/skins/admin/vendor/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
 <script>
-$('#row-form select[name="product_category_id"]').select2({
-
-});
-
-$('#row-form select[name="product_brand_id"]').select2({
+$('#row-form select[name="blog_category_id"]').select2({
 
 });
 
 $('#row-form select[name="tag_ids[]"]').select2({
     'placeholder': "Choose 3 or more tags",
     'allowClear': true
+});
+
+$('#row-form [name="body"]').ckeditor({
+    'width': '800px',
+    'height': '700px',
+    'bodyId': 'content',
+    'bodyClass': 'block',
+    'allowedContent': true,
+    //'forcePasteAsPlainText': true, // disable paste from word
+    'contentsCss': [
+        "{{url('/skins/admin/vendor/bootstrap/css/bootstrap.min.css')}}",
+        "{{url('/skins/admin/vendor/font-awesome/css/font-awesome.min.css')}}",
+        "{{url('/skins/admin/css/sb-admin.css')}}",
+        "{{url('/skins/admin/vendor/jquery/jquery.min.js')}}",
+        "{{url('/skins/admin/vendor/jquery-easing/jquery.easing.min.js')}}",
+        "{{url('/skins/admin/js/sb-admin.min.js')}}"
+    ],
+    'toolbarGroups': [
+        {name: 'document', groups: ['mode', 'document', 'doctools']},
+        {name: 'clipboard', groups: ['clipboard', 'undo']},
+        {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
+        {name: 'forms', groups: ['forms']},
+        '/',
+        {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+        {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+        {name: 'links', groups: ['links']},
+        {name: 'insert', groups: ['insert']},
+        '/',
+        {name: 'styles', groups: ['styles']},
+        {name: 'colors', groups: ['colors']},
+        {name: 'tools', groups: ['tools']},
+        {name: 'others', groups: ['others']},
+        {name: 'about', groups: ['about']}
+    ],
+    'removeButtons': 'Print,NewPage,Preview,Save,Form,Checkbox,Radio,Textarea,TextField,Select,ImageButton,Button,HiddenField,Iframe',
+
+    'filebrowserBrowseUrl': "{{route('admin.filemanager.popup')}}"
+
 });
 </script>
 
