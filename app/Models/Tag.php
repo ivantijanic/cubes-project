@@ -20,9 +20,9 @@ class Tag extends Model {
                         \App\Models\Product::class, 'products_tags', 'tag_id', 'product_id'
         );
     }
-    
+
     public function productTagGroups() {
-		return $this->belongsTo(\App\Models\ProductTagGroup::class, 'tags_group_id');
-	}
+        return $this->belongsTo(\App\Models\ProductTagGroup::class, 'tags_group_id');
+    }
 
 }

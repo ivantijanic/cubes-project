@@ -28,7 +28,10 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Title</th>
+						<th>Tags Group</th>
+                                                <th>Title</th>
+                                                <th>Order Number</th>
+                                                <th>Fa Icon</th>
 						<th class="text-center">Actions</th>
 					</tr>
 				</thead>
@@ -93,9 +96,21 @@
 				'name': 'id',
 				'data': 'id'
 			},
+                        {
+				'name': 'tags_group_id',
+				'data': 'tags_group_id'
+			},
 			{
 				'name': 'title',
 				'data': 'title'
+			},
+                        {
+				'name': 'order_number',
+				'data': 'order_number'
+			},
+                        {
+				'name': 'fa_icon',
+				'data': 'fa_icon'
 			},
 			{
 				'name': 'actions',
