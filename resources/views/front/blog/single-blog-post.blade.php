@@ -49,7 +49,7 @@
                     <!-- .entry-header -->
                     <div class="entry-content">
                         <p class="highlight">
-                            {{$post->body}}
+                            {!!$post->body!!}
                         </p>
                     </div>
                     <!-- .entry-content -->
@@ -63,8 +63,8 @@
                                         </nav> ne znam sta bih mogao sa ovim-->
                     @include('front.blog.partials.comments')
 
-                   
-                    
+
+
                     <!-- #comments -->
                 </article>
                 <!-- #post-## -->
@@ -198,3 +198,86 @@
 </div>
 
 @endsection
+@push('footer_javascript')
+<!--<script src="{{url('/skins/front/assets/js/jquery.min.js')}}" type="text/javascript"></script>
+<script>
+    var commentsForm = $('#commentform');
+    commentsForm.on('submit', function (e) {
+
+        e.preventDefault();
+    console.log('prvi');
+        var commentBodyInput = commentsForm.find('body');
+    
+        var commentAuthorInput = commentsForm.find('author');
+        //va function vraca ono sto je uneseno u input polju
+        
+        var messageTextBody = commentBodyInput.val();
+        var messageTextAuthor = commentAuthorInput.val();
+       
+         console.log('prvi2');
+        // ukoliko uneseni tekst nije prazan
+        // tek tada dodaj novi lement
+        if (messageTextBody != '') {
+            //selektovanje templejta za poruku
+            var newMessage = $('.media row').clone();
+
+            newMessage.find('.data-comment-body').html(messageTextBody);
+            newMessage.find('.data-comment-author').html(messageTextAuthor);
+           console.log('prvi3');
+        
+            
+
+            $('#comments').append(newMessage);
+
+            //val funkcija menja vrednost ako joj se nesto prosledi
+            commentBodyInput.val('');
+            commentAuthorInput.val('');
+        }
+        
+    
+        console.log('prvi');
+        console.log(commentsForm);
+        $.ajax({
+            "url": window.location.href
+        }).done(function (response) {
+            console.log('Debugging response');
+            console.log(response);
+
+            //$('#chat-messages').html('');
+            console.log('OVDE');
+            $('.media-list list-unstyled').empty();
+
+            for (var messageIndex in response) {
+
+                var message = response[messageIndex];
+
+
+                var newMessage = $('.media row').clone();
+
+                newMessage.find('.data-comment-body').html(message.body);
+                newMessage.find('.glyphicon glyphicon-user').html(message.visitor_name);
+                newMessage.find('.glyphicon glyphicon-calendar').html(message.created_at);
+
+                newMessage.appendTo('.media row');
+            }
+
+
+        }).fail(function () {
+            console.log("Error in communication with server");
+        }).always(function () {
+            console.log('Ajax has finished!!!');
+        });
+
+        console.log("Da li se ceka ajax?");
+
+
+
+
+
+
+
+
+    });
+
+</script>-->
+@endpush

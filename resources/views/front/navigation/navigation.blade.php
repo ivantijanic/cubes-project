@@ -195,14 +195,9 @@
                     <div class="pizzaro-secondary-navigation">
                         <nav class="secondary-navigation"  aria-label="Secondary Navigation">
                             <ul  class="menu">
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="fa fa-birthday-cake"></i>Casa</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-burger"></i>Pljeskavica</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-salads"></i>Salads</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-tacos"></i>Tacos</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-wraps"></i>Wraps</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-fries"></i>Fries</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-salads"></i>Salads</a></li>
-                                <li class="menu-item"><a href="shop-grid-3-column.html"><i class="po po-drinks"></i>Drinks</a></li>
+                                @foreach($tags as $tag)
+                                <li class="menu-item"><a href="{{url('product/tag/' . $tag->id)}}"><i class="{{$tag->fa_icon}}"></i>{{$tag->title}}</a></li>
+                               @endforeach
                             </ul>
                         </nav>
                         

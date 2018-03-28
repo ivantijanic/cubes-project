@@ -27,6 +27,14 @@ Route::get('/page/{id}/{slug?}', 'StaticPagesController@page')->name('static-pag
 Route::get('/blog', 'BlogController@blogPosts')->name('blog');
 Route::get('/blog/{id}', 'BlogController@singleBlogPost')->name('blog-post');
 Route::post('/blog/{id}', 'BlogController@comment');
+//Route::get('/blog/category/{id}', 'BlogController@category');
+//Route::get('/blog/tag/{id}', 'BlogController@tag');
+
+
+//Navigation routes
+Route::get('/product/tag/{id}', 'NavigationController@productByTag');
+
+
 
 
 //FRONTEND AUTH
@@ -166,3 +174,7 @@ Route::middleware('auth')
 	
 	// END ADMIN ROUTES
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -15,7 +15,7 @@ class TagsController extends Controller {
     }
 
     public function datatable() {
-        $columns = ['id', 'tags_group_id', 'title', 'order_number', 'fa_icon', 'actions'];
+        $columns = ['id', 'title', 'order_number', 'fa_icon', 'actions'];
 
         $request = request();
 
@@ -81,22 +81,9 @@ class TagsController extends Controller {
 
         foreach ($tags as $tag) {
 
-//            $tagGroup = ProductTagGroup::query()
-//                    ->where('id', '=', $tag->tags_group_id);
-//            
-//            if (!empty($tagGroup)) {
-//                $row = [
-//                    'id' => $tag->id,
-//                    'tags_group_id' => $tagGroup->title,
-//                    'title' => $tag->title,
-//                    'order_number' => $tag->order_number,
-//                    'fa_icon' => $tag->fa_icon,
-//                    'actions' => view('admin.tags.partials.actions', ['tag' => $tag])->render()
-//                ];
-//            }
+
             $row = [
                 'id' => $tag->id,
-                'tags_group_id' => $tag->tags_group_id,
                 'title' => $tag->title,
                 'order_number' => $tag->order_number,
                 'fa_icon' => $tag->fa_icon,
@@ -119,10 +106,8 @@ class TagsController extends Controller {
         $request = request();
 
         $formData = $request->validate([
-            'tags_group_id' => 'integer|present',
             'title' => 'required|string|min:2|max:20',
-            'order_number' => 'integer|present',
-            'fa_icon' => 'present'
+//            'fa_icon' => 'nullable|string'
         ]);
 
         //dd($formData);
@@ -163,10 +148,8 @@ class TagsController extends Controller {
         $request = request();
 
         $formData = $request->validate([
-            'tags_group_id' => 'integer|present',
             'title' => 'required|string|min:2|max:20',
-            'order_number' => 'integer|present',
-            'fa_icon' => 'present'
+//            'fa_icon' => 'nullable'
         ]);
 
         $tag->fill($formData);

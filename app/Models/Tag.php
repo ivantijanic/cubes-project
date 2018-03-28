@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model {
 
-    protected $fillable = ['tags_group_id', 'title', 'order_number', 'fa_icon', 'header_manu'];
+    protected $fillable = ['title', 'order_number', 'fa_icon', 'header_manu'];
 
     public function blogPost() {
         return $this->belongsToMany(
@@ -21,8 +21,5 @@ class Tag extends Model {
         );
     }
 
-    public function productTagGroups() {
-        return $this->belongsTo(\App\Models\ProductTagGroup::class, 'tags_group_id');
-    }
-
+   
 }

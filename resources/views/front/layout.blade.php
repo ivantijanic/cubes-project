@@ -21,8 +21,8 @@
     <body class="@yield('class_for_gread')">
         <div id="page" class="hfeed site">
 
-            @include('front.navigation')
-            
+            @include('front.navigation.navigation', ['tags' => $tags])
+           
 
             @yield('content')
 

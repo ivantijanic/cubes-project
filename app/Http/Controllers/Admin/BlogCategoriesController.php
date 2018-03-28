@@ -42,7 +42,7 @@ class BlogCategoriesController extends Controller {
         ]);
     }
 
-    public function upload($id) {
+    public function update($id) {
         $formData = request()->validate([
             'title' => 'required|string|min:2',
         ]);

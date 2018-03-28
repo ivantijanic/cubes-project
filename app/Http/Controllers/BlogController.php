@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use App\Models\Comment;
+use App\Models\Tag;
 
 class BlogController extends Controller {
 
@@ -13,18 +14,22 @@ class BlogController extends Controller {
 
         $posts = BlogPost::orderBy('created_at', 'desc')->paginate(3);
         $categories = BlogCategory::all();
+        
+        
+      
 
         return view('front.blog.blog-posts', [
             'posts' => $posts,
-            'categories' => $categories
+            'categories' => $categories,
+              
         ]);
     }
 
     public function singleBlogPost($id) {
 
         $post = BlogPost::findOrFail($id);
-        
-        
+
+
 
         $categories = BlogCategory::query()
                 ->orderBy('title', 'asc')
@@ -44,11 +49,11 @@ class BlogController extends Controller {
             'comments' => $comments
         ]);
     }
-    
-    public function comment(){
-        
-         $request = request();
- 
+
+    public function comment() {
+
+        $request = request();
+
         $formData = $request->validate([
             'body' => 'required',
             'visitor_name' => 'required',
@@ -60,11 +65,14 @@ class BlogController extends Controller {
         $comment = new Comment($formData);
         $comment->save();
 
-        
+
         return redirect()->back()
                         ->with('systemMessage', 'Comment has been added!');
+
         
-        
+//        return response()->json([
+//            'success' => true, 
+//            'comment' => $comment]);
     }
 
 }

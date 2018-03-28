@@ -31,6 +31,17 @@
 				</div>
 				@endif
 			</div> 
+<!--                        <div class="form-group">
+				<label for="fa_icon">Fa Icon</label> 
+				<input value="{{old('fa_icon')}}" name="fa_icon" placeholder="Enter fa_icon" aria-describedby="titleHelpBlock" required="required" class="form-control here" type="text"> 
+				@if($errors->has('fa_icon'))
+				<div class="form-errors text-danger">
+					@foreach($errors->get('fa_icon') as $errorMessage)
+					<label class="error">{{$errorMessage}}</label>
+					@endforeach
+				</div>
+				@endif
+			</div> -->
 			<div class="form-group text-right">
 				<a href="{{route('admin.tags.index')}}" class="btn btn-secondary">Cancel</a>
 				<button name="submit" type="submit" class="btn btn-primary">Save</button>

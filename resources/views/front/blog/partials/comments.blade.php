@@ -88,7 +88,7 @@
                                             {{$post->title}}
                                         </a>
                                     </h5>
-                                    <p>{{$comment->body}}</p>
+                                    <p class="data-comment-body">{{$comment->body}}</p>
                                 </div>
                             </div>
                         </li>
